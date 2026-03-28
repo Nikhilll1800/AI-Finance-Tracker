@@ -345,3 +345,5 @@ export const uploadReceipt = async (req, res) => {
     });
   }
 };
+
+// csr=> controller->service->Db

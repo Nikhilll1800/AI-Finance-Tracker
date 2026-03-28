@@ -47,7 +47,7 @@ const userSchema=new mongoose.Schema({
     try{
         const salt=await bcrypt.genSalt(10);
         this.password=await bcrypt.hash(this.password,salt);
-        next();
+        // next();
     }
     catch(error){
         next(error);

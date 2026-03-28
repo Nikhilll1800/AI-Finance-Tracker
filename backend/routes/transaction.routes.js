@@ -8,8 +8,8 @@ import {
     deleteTransaction,
     uploadReceipt
 } from'../controllers/transaction.controller.js';
-import {protect} from '../middleware/auth.middleware.js';
-// const router=express.Router();
+// import {protect} from '../middleware/auth.middleware.js';
+const router=express.Router();
 
 //configure multer for file upload
  const upload=multer({
@@ -32,9 +32,9 @@ import {protect} from '../middleware/auth.middleware.js';
 
     router.route('/')
     .get(getTransactions)
-    .get(createTransaction);
+    .post(createTransaction);
 
-    router.route('/:{id}')
+    router.route('/:id')
     .get(getTransaction)
     .put(updateTransaction)
     .delete(deleteTransaction);
