@@ -33,28 +33,28 @@ const userSchema=new mongoose.Schema({
         type:String,
         select:false
     },
-    googleId:{
-        type:String,
-        default:null
-    }
+    // googleId:{
+    //     type:String,
+    //     default:null
+    // }
 },{
     timestamps:true
 });
 
 // hashPassword before storing
- userSchema.pre('save',async function (next){
-    if(!this.isModified('password'))return next;
+ userSchema.pre('save',async function (){
+    if(!this.isModified('password'))return ;
     try{
         const salt=await bcrypt.genSalt(10);
         this.password=await bcrypt.hash(this.password,salt);
-        // next();
+        
     }
     catch(error){
-        next(error);
+        throw error;
     }
  });
 //  compare password methods
-userSchema.method.comparePassword=async function(candidatePassword){
+userSchema.methods.comparePassword=async function(candidatePassword){
     return await bcrypt.compare(candidatePassword,this.password);
 };
 const User=mongoose.model('user',userSchema);

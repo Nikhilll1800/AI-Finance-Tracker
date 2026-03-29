@@ -16,7 +16,7 @@ export const protect = async (req, res, next) => {
         message: 'Not authorized, no token provided'
       });
     }
-
+ 
     try {
       // Verify access token
       const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
