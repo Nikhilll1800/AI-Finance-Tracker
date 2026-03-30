@@ -1,4 +1,5 @@
 import express from 'express';
+// for file uploads
 import multer from 'multer';
 import {
     getTransactions,
@@ -8,7 +9,7 @@ import {
     deleteTransaction,
     uploadReceipt
 } from'../controllers/transaction.controller.js';
-// import {protect} from '../middleware/auth.middleware.js';
+import {protect} from '../middleware/auth.middleware.js';
 const router=express.Router();
 
 //configure multer for file upload
@@ -27,7 +28,7 @@ const router=express.Router();
         } 
     }
  });
-    // router.use(protect);
+    router.use(protect);
 
 
     router.route('/')

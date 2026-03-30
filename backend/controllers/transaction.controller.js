@@ -1,7 +1,7 @@
 import Transaction from '../models/Transaction.model.js';
-// import Budget from '../models/Budget.model.js';
-// import { v2 as cloudinary } from 'cloudinary';
-// import { createNotification, checkHighValueTransaction, checkUnusualSpending } from '../services/notification.service.js';
+import Budget from '../models/Budget.model.js';
+import { v2 as cloudinary } from 'cloudinary';
+import { createNotification, checkHighValueTransaction, checkUnusualSpending } from '../services/notification.service.js';
 
 // Cloudinary config will be initialized lazily when needed
 
@@ -21,7 +21,7 @@ export const getTransactions = async (req, res) => {
       query.date = {};
       if (startDate) query.date.$gte = new Date(startDate);
       if (endDate) query.date.$lte = new Date(endDate);
-    }
+    } 
     if (minAmount || maxAmount) {
       query.amount = {};
       if (minAmount) query.amount.$gte = parseFloat(minAmount);
@@ -132,6 +132,7 @@ export const createTransaction = async (req, res) => {
           
           budget.alertSent = true;
           await budget.save();
+          
         }
       }
 
